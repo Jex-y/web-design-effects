@@ -1,0 +1,72 @@
+<head>
+  <title>Word Letter Swap</title>
+</head>
+<body>
+  <div class="word">
+    Tr<span class="letter" id="letter-i">i</span
+    ><span class="letter" id="letter-a">a</span>l
+  </div>
+
+  <script>
+    const word = document.querySelector(".word");
+    const [letterI, letterA] = word.querySelectorAll(".letter");
+    const distance = Math.abs(letterI.offsetLeft - letterA.offsetLeft);
+    word.style.setProperty("--distance", `${distance * 1.8}px`);
+  </script>
+
+  <style>
+    .word {
+      font-family: monospace;
+    }
+    .word > .letter {
+      display: inline-block;
+      animation-duration: 6s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+
+    #letter-i {
+      animation: letterSwapI;
+    }
+
+    #letter-a {
+      animation: letterSwapA;
+    }
+
+    @keyframes letterSwapI {
+      0% {
+        transform: translateX(0);
+      }
+      40% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(var(--distance, 0));
+      }
+      90% {
+        transform: translateX(var(--distance, 0));
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes letterSwapA {
+      0% {
+        transform: translateX(0);
+      }
+      40% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(calc(var(--distance, 0) * -1));
+      }
+      90% {
+        transform: translateX(calc(var(--distance, 0) * -1));
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</body>
